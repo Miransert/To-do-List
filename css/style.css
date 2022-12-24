@@ -1,0 +1,40 @@
+body{
+    background-color: #469fbc;
+}
+
+.pageTitle{
+    text-align: center;
+    font-size: 40px;
+    color: #ffffff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-top: 100px;
+    font-weight: bold;
+}
+
+.para{
+    font-size: 18px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+#submitBtn{
+    background-color: #275e6f;
+    color: #469fbc;
+    width: 50px;
+}
+
+#accountLogo{
+    color: #ffffff;
+    font-size: 30px;
+    padding: 0px 10px 0px 20px;
+}
+
+#signUp{
+    border-color: #ffffff;
+    color: #ffffff;
+    margin-top: -15px;
+}
+
+#nav{
+    background-color: rgba(39, 94, 111, 0.8);
+}

@@ -1,0 +1,19 @@
+body{
+    background-color: #469fbc;
+}
+
+#accountLogo{
+    color: #ffffff;
+    font-size: 30px;
+    padding: 0px 10px 0px 20px;
+}
+
+#signUp{
+    border-color: #ffffff;
+    color: #ffffff;
+    margin-top: -15px;
+}
+
+#nav{
+    background-color: rgba(39, 94, 111, 0.8);
+}
