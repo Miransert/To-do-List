@@ -14,10 +14,55 @@
         // location.
 
 const express = require('express')
-const app = express()
 const path = require('path')
+const app = express()
 
-app.use(express.static(path.join(__dirname, 'views')));
+// app.use means “Run this on ALL requests”
+// app.get means “Run this on a GET request, for the given URL”
 
+// By writing where the file is, it is not enough, since it needs
+    // to know the exact path. To give it the exact path, we
+    // write root, and end with __dirname. By writing dirname,
+    // the program understands that it is from this server.js
+    // file that the path is writen from.
 
-app.listen(9999)
+const home = require('./routes/homeRoute')
+const signup = require('./routes/signUpRoute')
+const login = require('./routes/loginRoute')
+const rootDir = require('./utils/path')
+
+app.use(home)
+
+app.get('/css/style.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'css', 'style.css'))
+})
+
+app.get('/toDoHome.js', (req, res) => {
+    res.sendFile(path.join(__dirname, 'toDoHome.js'))
+})
+
+// ____________________________________________________________
+
+app.use(signup)
+
+app.get('/css/signUpStyle.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'css', 'signUpStyle.css'))
+})
+
+// ____________________________________________________________
+
+app.use(login)
+
+app.get('/css/loginStyle.css', (req, res) => {
+    res.sendFile(path.join(__dirname, 'css', 'loginStyle.css'))
+})
+
+// ____________________________________________________________
+
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(rootDir, 'views', '404.html'))
+})
+
+app.listen(9999, () => {
+    console.log('Server running')
+})
