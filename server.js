@@ -59,10 +59,6 @@ app.get('/css/loginStyle.css', (req, res) => {
 
 // ____________________________________________________________
 
-app.use((req, res) => {
-    res.status(404).sendFile(path.join(rootDir, 'views', '404.html'))
-})
-
 app.listen(9999, () => {
     console.log('Server running')
 })

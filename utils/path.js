@@ -1,5 +1,5 @@
 // This file is for the path to work on different opperating systems
-    // since it is not all operating systems that use /
+    // since it is not all operating systems that use slash/
     // Windows uses backslash\ instead of slash/
 const path = require('path')
 
