@@ -97,7 +97,13 @@
           password
         })
       }).then((res) => res.json())
-      console.log(result)
+      if(result.status === 'ok'){
+        // everything went fine
+
+      }
+      else{
+        alert(result.error)
+      }
     }
   </script>
 </body>

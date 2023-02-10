@@ -48,13 +48,28 @@ router.get('/signup', (req, res) =>{
 })
 
 router.post('/api/register', async (req, res) =>{
-    console.log(req.body)
     // To understand better, look at point 1 at the top.
     // We first get the name, mail and password, and say we wanna
         // hash the password, we then also write 10, to tell the
         // program the number of times we want bcrypt to run on
         // this password.
     const {name, mail, password: plainTextPassword} = req.body
+
+    // returns error if the user does not enter a name, or if the
+        // name is not of type string
+    if(typeof name != 'string'){
+        return res.json({ status: 'error', error: 'Invalid name'})
+    }
+
+    // returns error if the user does not enter a password
+    if(!plainTextPassword){
+        return res.json({ status: 'error', error: 'Invalid password'})
+    }
+    // returns error if the users entered password is not
+        // longer than 8 characters
+    if(plainTextPassword.length <= 8){
+        return res.json({ status: 'error', error: 'Password needs to be at least 8 characters long'})
+    }
 
     const password = await bcrypt.hash(plainTextPassword, 10)
     
@@ -78,8 +93,12 @@ router.post('/api/register', async (req, res) =>{
         })
         console.log('User created successfully: ', response)
     }catch(error){
-        console.log(error)
-        return res.json({ status: 'error' })
+        if(error.code === 11000){
+            // duplicate key
+            // error if mail already exist in database
+            return res.json({ status: 'error', error: 'The entered e-mail already exists in the database' })
+        }
+        throw error
     }
 
     res.json({status: 'ok'})
